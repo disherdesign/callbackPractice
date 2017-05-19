@@ -62,9 +62,16 @@ multiply(4, 3, function(answer){
 // 4. Write a function called contains that checks if a name exists in an array. 
 // If it does, return true using the callback, if not return false.
 
-  var contains = function(names, name, cb) {
-    return cb()
-  }
+  function contains(names, name, cb) {
+    for (var i=0; i <= names.length-1; i++) {
+      var temp = names[i];
+      if (temp === name) {
+          cb(true);
+      } else { 
+          cb(false);
+      }
+    }
+  };
 
 contains(names, 'Colt', function(result){
   if(result === true){
@@ -79,7 +86,31 @@ contains(names, 'Colt', function(result){
 // 5. Write a function called uniq that takes the names array and removes all duplicates and returns 
 // the callback function with the array of unique names.
 
-    //Code Here
+    function uniq(names, cb) {
+      var arr = [];
+        for (i=0; i<names.length - 1; i++) {
+          if (!names.includes(names[i],i)) {
+            arr.push(names[i])
+          }
+        }
+        cb(names)
+      }
+
+
+//         var i,
+//       len=names.length,
+//       out=[],
+//       obj={};
+
+//   for (i=0;i<len;i++) {
+//     obj[names[i]]=0;
+//   }
+//   for (i in obj) {
+//     out.push(i);
+//   }
+//   cb(out);
+// }
+    
 
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
@@ -89,7 +120,11 @@ uniq(names, function(uniqArr){
 // 6. Write a function called each that takes in an array of names. For each item, use a callback 
 // function to return the indices and item.
 
-    //Code Here 
+    function each(names, cb) {
+      for (i=0,l=names.length;i<l;i++) {
+        cb(names[i], i)
+      }
+    }
 
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
@@ -100,7 +135,11 @@ each(names, function(item, indice){
 // 7. Write a function called getUserById that looks at the array of user objects (users) and searches for a user by ID 
 // and returns that user.
 
- //Code Here
+ function getUserById(users, id, cb) {
+  for (var id in users) {
+    cb(users[id])
+  }
+ }
 
 var users = [
   {
